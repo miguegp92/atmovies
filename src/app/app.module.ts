@@ -10,11 +10,14 @@ import {MatDividerModule} from '@angular/material/divider';
 
 import {MatListModule} from '@angular/material/list'
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -23,7 +26,10 @@ import { AppComponent } from './app.component';
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
-    MatToolbarModule
+    AppRoutingModule,
+    MatToolbarModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
