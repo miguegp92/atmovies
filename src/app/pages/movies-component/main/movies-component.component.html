@@ -1,0 +1,29 @@
+<h4>Películas</h4>
+
+<div class="card-container" *ngIf="(movies$ | async ); let movieList">
+
+  <ng-container *ngFor="let movie of (movies$ | async )">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title [routerLink]="[movie.id]">{{ movie.title }}</mat-card-title>
+      </mat-card-header>
+      <img
+        mat-card-image
+        [src]="movie.poster"
+        alt="{{ movie.title }}"
+        class="card-image"
+      />
+      <mat-card-content>
+        <label class="card-hashtag" *ngFor="let hashtag of movie.genre">#{{hashtag}} </label>
+      </mat-card-content>
+
+    </mat-card> 
+  </ng-container>
+</div>
+
+<div class="buttons-container">
+  <button mat-fab color="primary" aria-label="Editar película">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>

@@ -10,10 +10,9 @@
     height: 100vh;
     /* border: 1px solid rgba(0, 0, 0, 0.5); */
   }
-  .example-sidenav-content {
-    /* padding: 20px; */
-    padding-left: 20px;
-  } 
+  // .example-sidenav-content {
+  //   padding-left: 20px;
+  // } 
 
   .example-sidenav {
     padding: 0;
@@ -38,4 +37,14 @@
     top: 50%;
     overflow: hidden;
     z-index: 999999;
+}
+
+.buttons-container{
+  position: fixed;
+  top: 90vh;
+  right: 5px;
+
+}
+.buttons-container button{
+  margin-right: 5px;
 }
