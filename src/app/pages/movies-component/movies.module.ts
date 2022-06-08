@@ -11,18 +11,28 @@ import { MoviesDetailComponent } from './detail/movies-detail.component';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { DurationPipe } from '../../core/pipes/duration.pipe';
-
-
+import { MoviesActionComponent } from './movies-action/movies-action/movies-action.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [MoviesComponent, MoviesDetailComponent, DurationPipe],
+  declarations: [MoviesComponent, MoviesDetailComponent, DurationPipe, MoviesActionComponent],
   imports: [
     CommonModule,
     MoviesRoutingModule,
     MatCardModule,
     MatDividerModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ], 
   providers: [MoviesService, ActorsService, CompaniesService]
 })

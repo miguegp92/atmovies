@@ -37,7 +37,9 @@ export class MoviesDetailComponent implements OnInit {
     return this._companiesService.relMovieByCompany[id];
   }
 
-  editMovie() {}
+  gotoEdit(id: number){
+    this.router.navigate(['/movies/edit', id]);
+  }
 
   deleteMovie() {
     if (

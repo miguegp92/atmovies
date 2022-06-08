@@ -1,22 +1,22 @@
 {
   "movies": [
     {
-      "id": 1,
-      "title": "Dancing Lady",
+      "title": "Dancing Ladies",
       "poster": "http://dummyimage.com/400x600.png/cc0000/ffffff",
+      "year": 2006,
+      "duration": 161,
+      "imdbRating": 8.27,
       "genre": [
         "Comedy",
         "Musical",
         "Romance"
       ],
-      "year": 2006,
-      "duration": 161,
-      "imdbRating": 8.27,
       "actors": [
         4,
         5,
         6
-      ]
+      ],
+      "id": 1
     },
     {
       "id": 2,
@@ -154,6 +154,16 @@
         8,
         9
       ]
+    },
+    {
+      "title": "Pelicula de pruebas",
+      "poster": "https://www.w3.org/Graphics/PNG/text2.png",
+      "year": 2020,
+      "duration": 200,
+      "imdbRating": 5,
+      "genre": null,
+      "actors": null,
+      "id": 10
     }
   ],
   "actors": [

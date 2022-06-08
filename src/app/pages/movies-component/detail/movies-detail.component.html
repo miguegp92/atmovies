@@ -41,7 +41,7 @@
 
 
   <div class="buttons-container">
-    <button mat-fab color="accent" aria-label="Editar película">
+    <button mat-fab color="accent" aria-label="Editar película" (click)="gotoEdit(movie.id)">
       <mat-icon>edit</mat-icon>
     </button>
     <button mat-fab color="warn" aria-label="Borrar película" (click)="deleteMovie()">

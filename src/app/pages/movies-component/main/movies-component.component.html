@@ -1,4 +1,4 @@
-<h4>Películas</h4>
+<h4>{{ "movies.title" | translate }}</h4>
 
 <div class="card-container" *ngIf="(movies$ | async ); let movieList">
 
@@ -22,7 +22,7 @@
 </div>
 
 <div class="buttons-container">
-  <button mat-fab color="primary" aria-label="Editar película">
+  <button mat-fab color="primary" aria-label="Añadir película" (click)="gotoAdd()">
     <mat-icon>add</mat-icon>
   </button>
 

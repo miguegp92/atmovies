@@ -1,0 +1,29 @@
+.card-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center
+}
+
+.card-container .mat-form-field {
+    width: 95vw;
+}
+
+
+@media screen and (min-width: 700px) {
+    .card-container .mat-form-field {
+        width: 80vw;
+    }
+  }
+
+
+
+.buttons-container{
+    position: fixed;
+    top: 90vh;
+    right: 25px;
+  }
+  .buttons-container button{
+    margin-right: 5px;
+  }
