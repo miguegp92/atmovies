@@ -1,3 +1,8 @@
 {
-    "movies.title": "Películas"
+    "movies.title": "Películas",
+    "app.title": "At Movies App",
+    "item.menu.companies": "Estudios",
+    "item.menu.actors": "Actores",
+    "notification.success": "Su petición se ha completado con éxito",
+    "notification.error": "Se ha producido un error. Por favor vuelva a intentarlo más tarde."
 }

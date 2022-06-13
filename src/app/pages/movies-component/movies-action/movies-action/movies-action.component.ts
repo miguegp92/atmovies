@@ -8,6 +8,7 @@ import { CompaniesService } from 'src/app/core/services/companies.service';
 import { MoviesService } from 'src/app/core/services/movies.service';
 import { Movie } from '../../movies.interface';
 import { FormBuilder } from '@angular/forms';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-movies-action',
@@ -40,6 +41,7 @@ export class MoviesActionComponent implements OnInit {
     private _actorsService: ActorsService,
     private _spinner: SpinnerService,
     private _companiesService: CompaniesService,
+    private _notify: NotificationService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -97,10 +99,10 @@ export class MoviesActionComponent implements OnInit {
   }
 
   addPelicula() {
-    this._moviesService.addMovie(this.movieForm.value).subscribe( (result) => console.log('OK'), (error)=> console.error('KO', error) )
+    this._moviesService.addMovie(this.movieForm.value).subscribe( (result) => this._notify.showNotificationSuccess(), (error)=> this._notify.showNotificationError() );
   }
 
   updatePelicula() {
-    this._moviesService.updateMovie(this.idMovie, this.movieForm.value).subscribe( (result) => console.log('OK'), (error)=> console.error('KO', error) )
+    this._moviesService.updateMovie(this.idMovie, this.movieForm.value).subscribe( (result) => this._notify.showNotificationSuccess(), (error)=> this._notify.showNotificationError() );
   }
 }

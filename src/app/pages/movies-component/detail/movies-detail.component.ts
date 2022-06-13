@@ -5,6 +5,7 @@ import { ActorsService } from 'src/app/core/services/actors.service';
 import { CompaniesService } from 'src/app/core/services/companies.service';
 import { Movie } from '../movies.interface';
 import { MoviesService } from '../../../core/services/movies.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-movies-detail',
@@ -19,7 +20,8 @@ export class MoviesDetailComponent implements OnInit {
     private router: Router,
     private _moviesService: MoviesService,
     private _actorsService: ActorsService,
-    private _companiesService: CompaniesService
+    private _companiesService: CompaniesService,
+    private _notify: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +48,10 @@ export class MoviesDetailComponent implements OnInit {
       confirm('Va a eliminar esta película, ¿está seguro que quiere continuar?')
     ) {
       this._moviesService.deleteMovie(this.idMovie).subscribe((result) => {
+         this._notify.showNotificationSuccess();
         this.router.navigate(['/movies']);
+      }, (error) => {
+        this._notify.showNotificationError();
       });
     }
   }

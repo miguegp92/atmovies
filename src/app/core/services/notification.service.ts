@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
@@ -7,18 +8,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificationService {
-    notification = new BehaviorSubject(false);
+    notification$ = new BehaviorSubject('');
 
-    // show(): void {
-    //     this.open.next(true);
-    // }
+    constructor(private _translateService: TranslateService){}
 
-    // hide(): void {
-    //     this.open.next(false);
-    // }
+    showNotificationSuccess(){
+      this._translateMethod('notification.success');
+    }
+    showNotificationError() {
+      this._translateMethod('notification.error');
+    }
 
-    // toggle(param: boolean): void {
-    //     console.log(param)
-    //     this.open.next(param);
-    // }
+    private _translateMethod(keyString: string){
+      this._translateService.get(keyString).subscribe((resTranslated: string) => {
+        this.notification$.next( resTranslated );
+      });
+    }
+
 }

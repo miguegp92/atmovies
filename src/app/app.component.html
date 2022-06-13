@@ -5,11 +5,11 @@
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="over">
       <mat-list>
-        <mat-list-item [routerLink]="'movies'"> Películas </mat-list-item>
+        <mat-list-item [routerLink]="'movies'"> {{ "movies.title" | translate }}  </mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item> Actores </mat-list-item>
+        <mat-list-item> {{ "item.menu.actors" | translate }}  </mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item> Estudios </mat-list-item>
+        <mat-list-item> {{ "item.menu.companies" | translate }} </mat-list-item>
         <mat-divider></mat-divider>
        </mat-list>
     </mat-drawer>
@@ -28,7 +28,7 @@
                 alt="Angular Logo"
                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
               />
-              <span>At Movies App</span>
+              <span>{{ "app.title" | translate }}</span>
             </mat-toolbar>
     </div>
     
@@ -40,7 +40,9 @@
 </div>
 
 <mat-spinner *ngIf="isSpinnerShow"></mat-spinner>
-<ng-template #snackBar></ng-template>
+<!-- <ng-template #snackBar>
+
+</ng-template> -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
