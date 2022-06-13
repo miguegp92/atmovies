@@ -7,14 +7,14 @@
       "duration": 161,
       "imdbRating": 8.27,
       "genre": [
-        "Comedy",
-        "Musical",
-        "Romance"
+        "drama",
+        "Comedia",
+        "Risa"
       ],
       "actors": [
         4,
         5,
-        6
+        "5"
       ],
       "id": 1
     },
@@ -164,6 +164,41 @@
       "genre": null,
       "actors": null,
       "id": 10
+    },
+    {
+      "title": "sdff",
+      "poster": "https://www.w3.org/Graphics/PNG/text2.png",
+      "year": "",
+      "duration": 100,
+      "imdbRating": 5,
+      "genre": {},
+      "actors": [
+        "2",
+        "4"
+      ],
+      "id": 11
+    },
+    {
+      "title": "sdffff",
+      "poster": "http://dummyimage.com/400x600.png/cc0000/ffffff",
+      "year": "",
+      "duration": "",
+      "imdbRating": "",
+      "genre": null,
+      "actors": [],
+      "id": 12
+    },
+    {
+      "title": "king kong",
+      "poster": "alguno",
+      "year": 2022,
+      "duration": 200,
+      "imdbRating": 0,
+      "genre": [],
+      "actors": [
+        "2"
+      ],
+      "id": 13
     }
   ],
   "actors": [

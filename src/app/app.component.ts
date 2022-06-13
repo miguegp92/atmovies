@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.spinner.open.subscribe( val => this.isSpinnerShow = val );
-    this._notify.notification$.subscribe( (msg: string) => this.openSnackBar(msg) );
+    this._notify.notification$.subscribe( (msg: string) => (msg !== '' ? this.openSnackBar(msg) : null) );
   }
 
   openSnackBar(message: string) {

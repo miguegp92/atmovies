@@ -19,6 +19,9 @@ export class NotificationService {
       this._translateMethod('notification.error');
     }
 
+    showCustomNotification(keyMessage: string) {
+      this._translateMethod(keyMessage);
+    }
     private _translateMethod(keyString: string){
       this._translateService.get(keyString).subscribe((resTranslated: string) => {
         this.notification$.next( resTranslated );
