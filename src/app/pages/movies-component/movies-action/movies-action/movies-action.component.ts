@@ -1,4 +1,4 @@
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,6 +35,10 @@ export class MoviesActionComponent implements OnInit {
     actors: [],
     id: this.idMovie,
   });
+
+  companyRelationship: number = 0;
+  companyOld: number = 0;
+
   filteredActors: Observable<number[]> | undefined;
   loadingContent: boolean = false;
   keywords: Set<string> = new Set([]);
@@ -52,7 +56,7 @@ export class MoviesActionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._spinner.open.subscribe((val) => (this.loadingContent = val));
+    this._spinner.open.subscribe((val: boolean) => (this.loadingContent = val));
     this.switchMode();
     this.loadCompaniesList();
 
@@ -84,10 +88,7 @@ export class MoviesActionComponent implements OnInit {
         }
 
         this.mode = this.movie.id && this.movie.id > 0 ? 'edit' : 'add';
-        this.companiesList = result[1].map((company: any) => ({
-          id: company.id,
-          name: company.name,
-        }));
+        this.companiesList = result[1];
         this.actorList = result[2].map((actor: any) => ({
           id: actor.id,
           name: `${actor.first_name} ${actor.last_name || ''}`,
@@ -101,10 +102,17 @@ export class MoviesActionComponent implements OnInit {
       }
     );
   }
+
   loadCompaniesList(): Observable<any> {
     return this._companiesService
       .getCompanies()
-      .pipe(catchError((error) => of(null)));
+      .pipe(tap( (companies: Array<any>) => {
+        if(this.idMovie){
+          this.companyRelationship = companies.find( (c: any) => c.movies.some( (m: number) => m === this.idMovie) ).id;
+          this.companyOld = Number(this.companyRelationship);
+        }
+        
+      }), catchError((error) => of(null)));
   }
 
   loadMovieData(): Observable<Movie | null> {
@@ -135,8 +143,9 @@ export class MoviesActionComponent implements OnInit {
   addPelicula() {
     this._moviesService.addMovie(this.movieForm.value).subscribe(
       (result) => {
+        this.updateCompanyItem(result.id)
         this._notify.showNotificationSuccess();
-        this.router.navigate(['/movies']);
+        this.router.navigate(['/movies', result.id]);
       },
       (error) => {
         this._notify.showNotificationError();
@@ -149,7 +158,11 @@ export class MoviesActionComponent implements OnInit {
     this._moviesService
       .updateMovie(this.idMovie, this.movieForm.value)
       .subscribe(
-        (result) => this._notify.showNotificationSuccess(),
+        (result) => {
+        this.updateCompanyItem(result.id)
+          this._notify.showNotificationSuccess(); 
+          this.router.navigate(['/movies', result.id]);
+        },
         (error) => {
           this._notify.showNotificationError();
           this.loadAllData();
@@ -157,6 +170,31 @@ export class MoviesActionComponent implements OnInit {
       );
   }
 
+  // Update Companies
+  updateCompanyItem(idMovie: number) {
+    if(this.companyOld !== this.companyRelationship){
+      let oldUpd1 = of(undefined)
+      if(this.mode === 'edit'){
+        const oldCompany = this.companiesList.find( (c: any) => c.id === this.companyOld );
+        oldCompany.movies.splice( oldCompany.movies.indexOf(idMovie), 1  );
+        oldUpd1 = this._companiesService.updateCompany(oldCompany);
+      }
+      
+
+      const newCompany = this.companiesList.find( (c: any) => c.id === this.companyRelationship );
+      newCompany.movies.push( idMovie );
+
+      
+      const newUpd = this._companiesService.updateCompany(newCompany);
+      zip([oldUpd1 , newUpd]).subscribe( console.log), catchError( (error) => {
+        this._notify.showCustomNotification('error.companies.updated'); 
+        return of(null);
+      });
+    }
+    
+    console.log(this.companyRelationship)
+    console.log(this.companyOld)
+  }
   // Desplegables y chips para la feature de Actores
   updateMovieActorsForm() {
     this.movieForm.get('actors')?.setValue(this.movie.actors);

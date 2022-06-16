@@ -5,5 +5,6 @@
     "item.menu.actors": "Actores",
     "notification.success": "Su petición se ha completado con éxito",
     "notification.error": "Se ha producido un error. Por favor vuelva a intentarlo más tarde.",
-    "notification.actor.filled": "Este actor ya está añadido en esta película. Por favor, Añada otro"
+    "notification.actor.filled": "Este actor ya está añadido en esta película. Por favor, Añada otro",
+    "error.companies.updated": "Se ha producido un error al actualizar la compañía de la película."
 }

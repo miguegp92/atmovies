@@ -41,6 +41,25 @@ export class CompaniesService {
     }));
   }
 
+  public updateCompany(company: any): Observable<any> {
+    this._spinner.toggle(true);
+    return this._http.putMethod(`companies/${company.id}`, company).pipe(
+      tap((val) => {
+        this._spinner.toggle(false);
+        console.log('Guardado correctamente')
+        // Notification Service
+      })
+    );
+  }
+
+  // http://localhost:3000/companies?movies_like=5
+  public getCompanyByIdMovie(idMovie: number): Observable<any> {
+    return  this._http.getMethod(`companies?movies_like=${idMovie}`).pipe(
+      catchError(  (result: any) =>  {
+     return of(null)
+    }));
+  }
+
   public getCompanyNameById(id: number): string {
 
     const company = this.companies[id];

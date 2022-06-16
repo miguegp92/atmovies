@@ -17,8 +17,8 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Estudio</mat-label>
-        <mat-select >
-          <mat-option *ngFor="let company of companiesList" value="{{company.id}}">{{company.name}}</mat-option>
+        <mat-select [(value)]="companyRelationship" >
+          <mat-option *ngFor="let company of companiesList" [value]="company.id">{{company.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -58,7 +58,7 @@
       </mat-autocomplete> -->
     </div>
 
-    <div>
+    <div style="margin-top: 10px;">
       <mat-form-field class="example-chip-list" appearance="fill">
         <mat-label>Género</mat-label>
         <mat-chip-list #chipList aria-label="Video keywords" multiple formControlName="genre">
