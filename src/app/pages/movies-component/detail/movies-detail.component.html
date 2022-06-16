@@ -1,0 +1,53 @@
+
+
+<div class="card-container" *ngIf="(movie$ |async) as movie">
+  <h4>{{ movie.title }}</h4>
+  <div class="container-image">
+    <img
+        mat-card-image
+        [src]="movie.poster"
+        alt="{{ movie.title }}"
+        class="card-image"
+      />
+  </div>
+  <div class="container-info">
+    <div class="rating">
+      <h5>Puntuación</h5>
+    <mat-divider></mat-divider>
+      <p>{{ movie.imdbRating }}</p>
+    </div>
+    <div class="duration">
+      <h5>Duración</h5>
+    <mat-divider></mat-divider>
+      <p>{{ movie.duration | duration }}</p>
+    </div>
+  </div>
+  <div class="container-actores">
+    <h5>Actores</h5>
+    <mat-divider></mat-divider>
+    <div *ngFor="let actor of movie.actors">
+      {{getActorName(actor)}}
+    </div>
+  </div>
+  <div class="container-company">
+    <h5>Estudio</h5>
+    <mat-divider></mat-divider>
+    {{ getCompanyByIdMovie(movie.id) }}
+  </div>
+  <div class="container-hashtag">
+    <h5>Géneros</h5>
+    <label class="card-hashtag" *ngFor="let hashtag of movie.genre">#{{hashtag}} </label>
+  </div>
+
+
+  <div class="buttons-container">
+    <button mat-fab color="accent" aria-label="Editar película" (click)="gotoEdit(movie.id)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-fab color="warn" aria-label="Borrar película" (click)="deleteMovie()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+
+

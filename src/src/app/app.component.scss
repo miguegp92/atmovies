@@ -1,0 +1,50 @@
+
+
+
+
+  /* SIDENAV STYLES */ 
+  .toolbar .mat-toolbar {
+    background-color:dodgerblue;
+  }
+  .example-container {
+    height: 100vh;
+    /* border: 1px solid rgba(0, 0, 0, 0.5); */
+  }
+  // .example-sidenav-content {
+  //   padding-left: 20px;
+  // } 
+
+  .example-sidenav {
+    padding: 0;
+    width: 150px;
+  }
+  
+  @media screen and (min-width: 575px) {
+    .example-sidenav {
+      padding-left: 20px;
+      width: 20%;
+      height: 100%;
+    }
+  }
+
+
+  // Spinner
+
+  .mat-progress-spinner {
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    overflow: hidden;
+    z-index: 999999;
+}
+
+.buttons-container{
+  position: fixed;
+  top: 90vh;
+  right: 5px;
+
+}
+.buttons-container button{
+  margin-right: 5px;
+}

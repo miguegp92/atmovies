@@ -1,0 +1,112 @@
+<div class="card-container" *ngIf="!loadingContent">
+  <form (ngSubmit)="saveChanges()"  [formGroup]="movieForm">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput   formControlName="title"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Poster</mat-label>
+        <input matInput  formControlName="poster"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Estudio</mat-label>
+        <mat-select [(value)]="companyRelationship" >
+          <mat-option *ngFor="let company of companiesList" [value]="company.id">{{company.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Actores</mat-label>
+        <mat-select #actorSelect (selectionChange)="pushActorToMovie($event); actorSelect.value = null">
+          <mat-option *ngFor="let actor of actorList" value="{{actor.id}}">{{getActorName(actor.id)}}</mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-chip-list
+        class="example-chip"
+        cdkDropList 
+        cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)" 
+        *ngIf="(movie.actors)">
+        <mat-chip
+          class="example-box"
+          cdkDrag
+          *ngFor="let actor of movie?.actors"
+          (removed)="remove(actor)">
+      
+          {{getActorName(actor)}}
+
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </mat-chip-list>
+      <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="pushActorToMovie($event)">
+        <mat-option *ngFor="let actor of actorList" [value]="actor.id">
+          {{getActorName(actor.id)}}
+        </mat-option>
+      </mat-autocomplete> -->
+    </div>
+
+    <div style="margin-top: 10px;">
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Género</mat-label>
+        <mat-chip-list #chipList aria-label="Video keywords" multiple formControlName="genre">
+          <mat-chip
+              *ngFor="let keyword of keywords"
+              [selected]="keyword"
+              [value]="keyword"
+              (removed)="removeKeyword(keyword)">
+            {{keyword}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="Nuevo género..."
+            [matChipInputFor]="chipList"
+            (matChipInputTokenEnd)="addKeywordFromInput($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+    <div style="margin-top: 10px;">
+      <mat-form-field appearance="fill">
+        <mat-label>Duración</mat-label>
+        <input matInput  type="number"   formControlName="duration"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Puntuación</mat-label>
+        <input matInput  type="number" precision="2" formControlName="imdbRating"/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Año</mat-label>
+        <input matInput  type="number"  formControlName="year"/>
+      </mat-form-field>
+    </div>
+
+    <div class="buttons-container">
+      <button type='submit' mat-fab color="primary" aria-label="Guardar" [disabled]="!movieForm.valid">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+
+  </form>
+</div>
+
+
